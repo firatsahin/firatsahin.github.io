@@ -1,0 +1,39 @@
+html, body{margin: 0; height: 100%;}
+img{max-width: 100%;}
+*{box-sizing: border-box; font-family: monospace;}
+div{padding: 8px;}
+
+#left-side-menu-div{
+    float: left;
+    width: 200px;
+    height: 100%;
+    border-right: 1px lightgray dashed;
+    background-color: aliceblue;
+    text-align: center;
+}
+img#avatar-img{
+    width: 100px;
+    border-radius: 50px;
+    margin: 0 auto;
+    display: block;
+}
+.left-menu-subgroup{
+    padding: 0;
+    margin-top: 20px;
+}
+.left-menu-subgroup-title{
+    padding: 0;
+}
+.left-menu-subgroup > ul{
+    margin: 5px 0 0 0;
+    padding-left: 27px;
+}
+.left-menu-subgroup > ul > li{
+    text-align: left;
+}
+
+#right-content-div{
+    float: left;
+    width: calc(100% - 200px);
+    height: 100%;
+}
