@@ -52,7 +52,7 @@ $(window).bind("hashchange", function (e) {
                 $.getScript('content/module/' + hashSegments[1] + '/js/' + hashSegments[1] + '.js', function () {
                     //setTimeout(moduleOn,10);
                     moduleOn();
-                }); // append js
+                }); // get & execute js
             }, function (err) {
                 l(err);
             });

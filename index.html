@@ -6,11 +6,28 @@
     <title>firatsahin.github.io | Static GitHub Web Site (for data structures & algorithms examples)</title>
     <meta name="description" content="Static GitHub Web Site (for data structures & algorithms examples) - firatsahin/firatsahin.github.io">
 
-    <link rel="stylesheet" href="css/main.css" />
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="js/helpers.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript">
+        // add css & js with cache-breaker urls
+        let cssRefs = ['css/main.css'];
+        let jsRefs = ['js/helpers.js', 'js/main.js'];
+        cssRefs.forEach(function (url) {
+            $("<link/>", { // append css
+                rel: "stylesheet",
+                type: "text/css",
+                href: url + '?_=' + Date.now()
+            }).appendTo("head");
+        });
+        let jsRefIndex = 0;
+        function loadNextJs() { // for execution order, we needed this function
+            if (jsRefIndex >= jsRefs.length) return;
+            $.getScript(jsRefs[jsRefIndex], function () {
+                jsRefIndex++;
+                loadNextJs();
+            }); // get & execute js (has cache-breaker inside)
+        }
+        loadNextJs();
+    </script>
 </head>
 <body>
 <div id="left-side-menu-div">
