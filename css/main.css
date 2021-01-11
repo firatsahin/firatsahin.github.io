@@ -1,7 +1,8 @@
-html, body{margin: 0; height: 100%; overflow: hidden;}
+html, body{margin: 0; height: 100%; overflow: hidden; display: unset !important;}
 img{max-width: 100%;}
 *{box-sizing: border-box; font-family: monospace;}
 div{padding: 8px;}
+.hidden{display: none;}
 
 #left-side-menu-div{
     float: left;
@@ -32,6 +33,13 @@ img#avatar-img{
 }
 .left-menu-subgroup > ul > li{
     text-align: left;
+}
+
+#tips-div {
+    position: absolute;
+    left: 200px;
+    font-size: 10px;
+    padding: 3px 6px;
 }
 
 #right-content-div{

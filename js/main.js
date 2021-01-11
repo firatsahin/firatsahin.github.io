@@ -1,11 +1,18 @@
 // hash navigation - BEGIN
 let defaultHashRoute = "#/home";
-//defaultHashRoute = "#/example/sdfdsf-ertter";
-//defaultHashRoute = "#/game/retrtyr-345354";
-
-//let possibleTabs = ["profile", "resume", "portfolio", "contact", "blog"];
 function hashHasRoute() {
-    return (location.hash != "" && location.hash.indexOf("#/") == 0 && location.hash != "#/");
+    return (location.hash != "" && location.hash.indexOf("#/") == 0 && location.hash != "#/"); // hash shouldn't be empty AND should start with #/ AND shouldn't be exactly "#/"
+}
+function getHashSegments() {
+    if (!hashHasRoute()) return [];
+    let hashSegments = location.hash.substr(2).split('/');
+    for (let i = 0; i < hashSegments.length; i++) { // eliminate empty segments
+        if (!hashSegments[i]) {
+            hashSegments.splice(i, 1);
+            i--;
+        }
+    }
+    return hashSegments;
 }
 function updateHashRoute(hashRoute, replace) {
     if (replace) {
@@ -16,21 +23,13 @@ function updateHashRoute(hashRoute, replace) {
 $(window).bind("hashchange", function (e) {
     l("hash changed to: " + location.hash);
 
-    if (!hashHasRoute()) {
-        updateHashRoute(defaultHashRoute, true);
-        return;
-    } // hash shouldn't be empty AND should start with #/ AND shouldn't be exactly "#/"
-
-    let hashSegments = location.hash.substr(2).split('/');
-    for (let i = 0; i < hashSegments.length; i++) { // eliminate empty segments
-        if (!hashSegments[i]) {
-            hashSegments.splice(i, 1);
-            i--;
-        }
-    }
+    let hashSegments = getHashSegments();
     l("hash segments:", hashSegments);
 
-    if (hashSegments.length === 0) return;
+    if (hashSegments.length === 0) { // if nothing in hash, push the default hash route
+        updateHashRoute(defaultHashRoute, true);
+        return;
+    }
 
     // clear previous module events / data etc.
     if (typeof moduleOn === 'function') moduleOn = null;
@@ -56,6 +55,7 @@ $(window).bind("hashchange", function (e) {
             }, function (err) {
                 l(err);
             });
+            tipsDiv.removeClass('hidden');
         }
     } else { // static basic content
         $.get('content/' + hashSegments[0] + '.html?_=' + Date.now()).then(function (result) {
@@ -63,6 +63,7 @@ $(window).bind("hashchange", function (e) {
         }, function (err) {
             l(err);
         });
+        tipsDiv.addClass('hidden');
     }
 
 });
@@ -71,9 +72,23 @@ $(window).bind("hashchange", function (e) {
 
 // document ready - BEGIN
 let rootDiv;
+let tipsDiv;
 $(function () {
     l("jQuery doc ready");
+
+    // initial definitions
     rootDiv = $("div#right-content-div");
+    tipsDiv = $("div#tips-div");
+
     $(window).trigger("hashchange"); // trigger here (bc hashchange event needs rootDiv ready)
+
+    // Link: check the code > click event
+    tipsDiv.find("a.lnk-check-the-code").click(function () {
+        let hashSegments = getHashSegments();
+        if (hashSegments.length < 2) return;
+        if (hashSegments[0] === 'module') {
+            window.open("https://github.com/firatsahin/firatsahin.github.io/tree/main/content/module/" + hashSegments[1]);
+        }
+    });
 });
 // document ready - END
