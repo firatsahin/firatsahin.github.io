@@ -31,6 +31,12 @@ $(window).bind("hashchange", function (e) {
         return;
     }
 
+    $("body").removeClass('side-menu-open'); // close left menu on route change
+    $("div#left-side-menu-div .left-menu-subgroup ul li a").removeClass('active').filter(function () { // add active class to current route
+        //l($(this).prop('href'), $(this).attr('href'), location.hash);
+        return ($(this).attr('href') === location.hash);
+    }).addClass('active');
+
     // clear previous module events / data etc.
     if (typeof moduleOn === 'function') moduleOn = null;
     if (typeof moduleOff === 'function') {
@@ -90,5 +96,14 @@ $(function () {
             window.open("https://github.com/firatsahin/firatsahin.github.io/tree/main/content/module/" + hashSegments[1] + "/js/" + hashSegments[1] + ".js");
         }
     });
+
+    // mobile > right-top Menu button click
+    $("div#btn-mobile-menu-toggler").click(function () {
+        $("body").addClass('side-menu-open');
+    });
+    // overlay click event
+    $("#overlay").click(function () {
+        $("body").removeClass('side-menu-open');
+    })
 });
 // document ready - END

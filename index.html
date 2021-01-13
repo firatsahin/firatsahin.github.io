@@ -10,7 +10,7 @@
     <script type="text/javascript">
         (function () {
             // add css & js with cache-breaker urls
-            let cssRefs = ['css/main.css'];
+            let cssRefs = ['css/main.css', 'css/responsive.css'];
             let jsRefs = ['js/helpers.js', 'js/main.js'];
             cssRefs.forEach(function (url) {
                 $("<link/>", { // append css
@@ -34,6 +34,14 @@
     </script>
 </head>
 <body style="display: none;">
+<div id="overlay"></div>
+<div id="mobile-header-div">
+    <a href="https://www.guneyfiratsahin.com/as-a-software-engineer" target="_blank" title="Go to Firat's Personal Web Site">
+        <img src="img/frt_profile_pic.jpg" id="avatar-img-mobile" class="left" />
+    </a>
+    <div class="left no-y-pad">Guney Firat Sahin<br><span style="font-size: 10px;">Data Structures & Algorithms Examples</span></div>
+    <div id="btn-mobile-menu-toggler">📚 Menu</div>
+</div>
 <div id="left-side-menu-div">
     <a href="https://www.guneyfiratsahin.com/as-a-software-engineer" target="_blank" title="Go to Firat's Personal Web Site">
         <img src="img/frt_profile_pic.jpg" id="avatar-img" />

@@ -25,7 +25,7 @@ moduleOn = () => {
             }
         }
         let isReallyCeleb = true;
-        for (let i = 0; i < celebCandidate - 1; i++) {
+        for (let i = 0; i < celebCandidate; i++) {
             if (knows(celebCandidate, i)) {
                 isReallyCeleb = false;
                 break;
@@ -52,7 +52,7 @@ moduleOn = () => {
     findTheCelebrity(); // with a celeb in the party
 
     // make one more person celebrity
-    let celeb2Index = getRandomInteger(0, arr.length);
+    let celeb2Index = celebIndex === 0 ? celebIndex + 1 : celebIndex - 1;
     arr[celeb2Index] = 11;
     l("we made arr[" + celeb2Index + "] celebrity too (2 celebrities now)");
     printf("we made arr[" + celeb2Index + "] celebrity too (2 celebrities now)", moduleRoot);
