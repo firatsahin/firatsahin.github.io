@@ -1,3 +1,50 @@
 #right-content-div > div {
     /*background-color: orange;*/
 }
+
+div.b-tree-node {
+    padding: 0;
+}
+div.b-tree-node:after{
+    content: '';
+    clear: both;
+}
+div.b-tree-node.root {
+    width: 500px;
+    margin: 0 auto;
+}
+div.b-tree-node.left{
+    width: 50%;
+    float: left;
+}
+div.b-tree-node.right{
+    width: 50%;
+    float: left;
+}
+div.b-tree-node-val {
+    width: 32px;
+    height: 32px;
+    border: 1px black solid;
+    border-radius: 20px;
+    text-align: center;
+    line-height: 22px;
+    margin: 4px auto;
+    font-size: 11px;
+    background-color: wheat;
+    position: relative;
+    z-index: 1;
+    padding: 4px;
+}
+div.b-tree-node div.line-from-left-node, div.b-tree-node div.line-from-right-node{
+    padding: 0;
+    background-color: black;
+    height: 1px;
+    /*position: relative;
+    top: 22px;*/
+}
+div.b-tree-node div.line-from-left-node{
+    margin-left: 50%;
+}
+div.b-tree-node div.line-from-right-node{
+    margin-right: 50%;
+}

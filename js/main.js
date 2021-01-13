@@ -87,7 +87,7 @@ $(function () {
         let hashSegments = getHashSegments();
         if (hashSegments.length < 2) return;
         if (hashSegments[0] === 'module') {
-            window.open("https://github.com/firatsahin/firatsahin.github.io/tree/main/content/module/" + hashSegments[1]);
+            window.open("https://github.com/firatsahin/firatsahin.github.io/tree/main/content/module/" + hashSegments[1] + "/js/" + hashSegments[1] + ".js");
         }
     });
 });

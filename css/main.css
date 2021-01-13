@@ -1,4 +1,5 @@
-html, body{margin: 0; height: 100%; overflow: hidden; display: unset !important;}
+html, body{margin: 0; height: 100%; overflow: hidden;}
+body{display: unset !important;}
 img{max-width: 100%;}
 *{box-sizing: border-box; font-family: monospace;}
 div{padding: 8px;}
@@ -40,6 +41,7 @@ img#avatar-img{
     left: 200px;
     font-size: 10px;
     padding: 3px 6px;
+    background-color: antiquewhite;
 }
 
 #right-content-div{
@@ -47,4 +49,15 @@ img#avatar-img{
     width: calc(100% - 200px);
     height: 100%;
     overflow-y: auto;
+    background-color: snow;
+}
+
+#right-content-div > div > div.printf-div{
+    border-bottom: 1px #FFC107 dashed;
+    overflow-x: auto;
+}
+#right-content-div pre{
+    background-color: whitesmoke;
+    padding: 10px 16px;
+    margin: 4px 0;
 }

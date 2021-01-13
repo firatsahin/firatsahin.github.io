@@ -12,7 +12,7 @@ moduleOn = () => {
         let leftSpace = '';
         for (let i = 0; i < queue[0].level; i++) leftSpace += '   ';
         l(leftSpace + "val:", node.val, "lvl:", queue[0].level);
-        $("div.breadth-first-nav-result").append(' ' + node.val + '(L' + queue[0].level + ')');
+        printf(' ' + node.val + '(L' + queue[0].level + ')', breadthFirstNavResult);
         if (node.left) queue.push({node: node.left, level: queue[0].level + 1});
         if (node.right) queue.push({node: node.right, level: queue[0].level + 1});
         queue.splice(0, 1);
@@ -45,46 +45,77 @@ moduleOn = () => {
             let leftSpace = '';
             for (let i = 0; i < level; i++) leftSpace += '   ';
             l(leftSpace + "val:", this.val, "lvl:", level);
-            $("div.depth-first-nav-result").append(' ' + this.val + '(L' + level + ')');
+            printf(' ' + this.val + '(L' + level + ')', depthFirstNavResult);
             if (this.left) this.left.navigateTreeDepthFirst(level + 1);
             if (this.right) this.right.navigateTreeDepthFirst(level + 1);
+        }
+
+        drawTree(targetDiv, level, direction) {
+            if (!targetDiv) {
+                console.error('Target Div parameter needed');
+                return;
+            }
+            if (!level) level = 0;
+            if (!direction) direction = 'root';
+            let nodeElm = $("<div>").addClass('b-tree-node').addClass(direction).html('<div class="b-tree-node-val">' + this.val + '</div>').appendTo(targetDiv);
+            if (direction === 'left') {
+                let lineFromLeft = $("<div>").addClass('line-from-left-node').prependTo(nodeElm);
+                var angle = Math.atan2((44), (lineFromLeft.width())) * (180 / Math.PI);
+                lineFromLeft.css('transform', 'rotateZ(-' + angle + 'deg)');
+            }
+            if (direction === 'right') {
+                let lineFromRight = $("<div>").addClass('line-from-right-node').prependTo(nodeElm);
+                var angle = Math.atan2((44), (lineFromRight.width())) * (180 / Math.PI);
+                lineFromRight.css('transform', 'rotateZ(' + angle + 'deg)');
+            }
+            if (this.left) this.left.drawTree(nodeElm, level + 1, 'left'); else if (this.right) $("<div>").css({
+                float: 'left',
+                width: '50%'
+            }).appendTo(nodeElm);
+            if (this.right) this.right.drawTree(nodeElm, level + 1, 'right');
         }
     }
 
     // create the tree
-    let bTreeRoot = new TreeNode(23);
-    bTreeRoot.left = new TreeNode(8);
-    bTreeRoot.right = new TreeNode(19);
-    bTreeRoot.left.left = new TreeNode(45);
-    bTreeRoot.left.left.right = new TreeNode(12);
-    bTreeRoot.left.right = new TreeNode(29);
-    bTreeRoot.right.right = new TreeNode(63);
-    bTreeRoot.right.left = new TreeNode(97);
-    bTreeRoot.right.right.left = new TreeNode(129);
+    let bTreeRoot = new TreeNode(getRandomInteger(1,100));
+    bTreeRoot.left = new TreeNode(getRandomInteger(1,100));
+    bTreeRoot.right = new TreeNode(getRandomInteger(1,100));
+    bTreeRoot.left.left = new TreeNode(getRandomInteger(1,100));
+    bTreeRoot.left.left.right = new TreeNode(getRandomInteger(1,100));
+    bTreeRoot.left.left.right.left = new TreeNode(getRandomInteger(1,100));
+    bTreeRoot.left.left.right.right = new TreeNode(getRandomInteger(1,100));
+    bTreeRoot.left.right = new TreeNode(getRandomInteger(1,100));
+    bTreeRoot.right.right = new TreeNode(getRandomInteger(1,100));
+    bTreeRoot.right.left = new TreeNode(getRandomInteger(1,100));
+    bTreeRoot.right.right.left = new TreeNode(getRandomInteger(1,100));
+    bTreeRoot.right.right.left.right = new TreeNode(getRandomInteger(1,100));
+    bTreeRoot.right.right.left.right.left = new TreeNode(getRandomInteger(1,100));
 
     l("tree created:", bTreeRoot);
-    $("<div>").html('<pre>tree created: <code>' + JSON.stringify(bTreeRoot,null,4) + '</code></pre>').appendTo(moduleRoot);
+    printf('<pre>tree created: <code>' + JSON.stringify(bTreeRoot, null, 0) + '</code></pre>', moduleRoot);
+    let bTreeRootDiv = printf('tree drawn:', moduleRoot).addClass('btree-draw-root');
+    bTreeRoot.drawTree(bTreeRootDiv);
 
     // navigate (depth first)
     l("NAVIGATE (depth first) (w/recursion):");
-    $("<div>").addClass('depth-first-nav-result').html('NAVIGATE (depth first) (w/recursion):').appendTo(moduleRoot);
+    let depthFirstNavResult = printf('NAVIGATE (depth first) (w/recursion):', moduleRoot);
     bTreeRoot.navigateTreeDepthFirst();
 
     // navigate (breadth first)
     l("NAVIGATE (breadth first) (w/queue):");
-    $("<div>").addClass('breadth-first-nav-result').html('NAVIGATE (breadth first) (w/queue):').appendTo(moduleRoot);
+    let breadthFirstNavResult = printf('NAVIGATE (breadth first) (w/queue):', moduleRoot);
     queue.push({node: bTreeRoot, level: 0});
     navigateTreeBreadthFirst();
 
     // get each level's sum
     getEachLevelStats(bTreeRoot);
     l("sums:", sums, "counts:", counts);
-    $("<div>").html("(EACH LEVEL'S) sums: " + JSON.stringify(sums) + " | counts: " + JSON.stringify(counts)).appendTo(moduleRoot);
+    printf("(EACH LEVEL'S) sums: " + JSON.stringify(sums) + " | counts: " + JSON.stringify(counts), moduleRoot);
     if (sums.length > 0 && sums.length === counts.length) {
         let avgs = [];
         for (let i = 0; i < sums.length; i++) avgs.push(sums[i] / counts[i]);
         l("avgs:", avgs);
-        $("<div>").html("(EACH LEVEL'S) averages: " + JSON.stringify(avgs,null,1)).appendTo(moduleRoot);
+        printf("(EACH LEVEL'S) averages: " + JSON.stringify(avgs, null, 1), moduleRoot);
     }
 }
 

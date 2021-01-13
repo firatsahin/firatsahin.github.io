@@ -9,7 +9,7 @@ moduleOn = () => {
     let t2 = Date.now();
     l("array creation:", t2 - t1, "ms");
     l("arr:", arr);
-    $("<div>").html("array created(length:" + arrLength + ") with random values [0~10]: " + JSON.stringify(arr) + "<br/>in " + (t2 - t1) + "ms").appendTo(moduleRoot);
+    printf("array created(length:" + arrLength + ") with random values [0~10]: " + JSON.stringify(arr) + "<br/>in " + (t2 - t1) + "ms", moduleRoot);
 
     t1 = Date.now();
     let randIndex = getRandomInteger(0, arr.length);
@@ -17,7 +17,7 @@ moduleOn = () => {
     t2 = Date.now();
     l("access random element:", t2 - t1, "ms");
     l("arr[" + randIndex + "]:", b);
-    $("<div>").html("access random element: " + "arr[" + randIndex + "]:" + b + "<br/>in " + (t2 - t1) + "ms").appendTo(moduleRoot);
+    printf("access random element: " + "arr[" + randIndex + "]:" + b + "<br/>in " + (t2 - t1) + "ms", moduleRoot);
 
     t1 = Date.now();
     let arrSum = 0;
@@ -26,7 +26,7 @@ moduleOn = () => {
     t2 = Date.now();
     l("average calculation:", t2 - t1, "ms");
     l("arrAvg:", arrAvg);
-    $("<div>").html("average calculation: " + "arrAvg:" + arrAvg + "<br/>in " + (t2 - t1) + "ms").appendTo(moduleRoot);
+    printf("average calculation: " + "arrAvg:" + arrAvg + "<br/>in " + (t2 - t1) + "ms", moduleRoot);
 
     // calculate how many length:5 sub arrays has total % 10 = 0
     let subArrLength = 25;
@@ -43,7 +43,7 @@ moduleOn = () => {
     t2 = Date.now();
     l("sub array calculation:", t2 - t1, "ms");
     l("howMany sub arrays (1st way w/inner for loop):", howMany);
-    $("<div>").html("sub array calculation (1st way w/inner for loop): " + "howMany sub arrays(length:" + subArrLength + " AND total%10==0):" + howMany + "<br/>in " + (t2 - t1) + "ms").appendTo(moduleRoot);
+    printf("sub array calculation (1st way w/inner for loop): " + "howMany sub arrays(length:" + subArrLength + " AND total%10==0):" + howMany + "<br/>in " + (t2 - t1) + "ms", moduleRoot);
 
     // howMany sub arrays (2nd way)
     t1 = Date.now();
@@ -57,11 +57,11 @@ moduleOn = () => {
     t2 = Date.now();
     l("sub array calculation:", t2 - t1, "ms");
     l("howMany sub arrays (2nd way w/sliding total) (more efficient):", howMany2);
-    $("<div>").html("sub array calculation (2nd way w/sliding total) (more efficient): " + "howMany sub arrays(length:" + subArrLength + " AND total%10==0):" + howMany + "<br/>in " + (t2 - t1) + "ms").appendTo(moduleRoot);
+    printf("sub array calculation (2nd way w/sliding total) (more efficient): " + "howMany sub arrays(length:" + subArrLength + " AND total%10==0):" + howMany + "<br/>in " + (t2 - t1) + "ms", moduleRoot);
 
     let integers = [121, -121, 10, -101, 0, 5, 4578921, 2442, 2589852, 258852, 6547896354123654, 33, 74];
     l("integers:", integers);
-    $("<div>").html("integer array created: " + JSON.stringify(integers)).appendTo(moduleRoot);
+    printf("integer array created: " + JSON.stringify(integers), moduleRoot);
 
     function isPalindrome(x) { // palindrome test (without converting to string)
         if (x < 0) return false;
@@ -96,7 +96,7 @@ moduleOn = () => {
     for (let x in integers) isPalindromeResults.push(isPalindrome(integers[x]));
     t2 = Date.now();
     l("isPalindrome:", isPalindromeResults, "in", t2 - t1, "ms");
-    $("<div>").html("check if each integer in array is palindrome or not (without converting number to string): " + JSON.stringify(isPalindromeResults) + "<br/>in " + (t2 - t1) + "ms").appendTo(moduleRoot);
+    printf("check if each integer in array is palindrome or not (without converting number to string): " + JSON.stringify(isPalindromeResults) + "<br/>in " + (t2 - t1) + "ms", moduleRoot);
 
     // array[int] reverse (without using a temp variable)
     function reverseArray(arr) {
@@ -113,7 +113,7 @@ moduleOn = () => {
     reverseArray(integers);
     t2 = Date.now();
     l("reverse integer array (without using a temp variable):", integers, "in", t2 - t1, "ms");
-    $("<div>").html("reverse integer array (without using a temp variable): " + JSON.stringify(integers) + "<br/>in " + (t2 - t1) + "ms").appendTo(moduleRoot);
+    printf("reverse integer array (without using a temp variable): " + JSON.stringify(integers) + "<br/>in " + (t2 - t1) + "ms", moduleRoot);
 }
 
 moduleOff = () => {
