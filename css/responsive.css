@@ -4,8 +4,8 @@
     }
     #mobile-header-div{
         display: block;
-        padding: 2px;
-        height: 36px;
+        padding: 5px;
+        height: 42px;
         background-color: aliceblue;
         border-bottom: 1px #CDDC39 dashed;
     }
@@ -16,14 +16,14 @@
     img#avatar-img-mobile{
         width: 32px;
         border-radius: 16px;
-        margin: 0 5px;
+        margin: 0 1px 0 3px;
     }
     #btn-mobile-menu-toggler{
         position: fixed;
         top: 0;
         right: 0;
         margin: 2px;
-        padding: 7px 10px;
+        padding: 10px 12px;
         border-left: 1px #8BC34A dashed;
         background-color: aliceblue;
         cursor: pointer;
@@ -44,7 +44,7 @@
     }
     #right-content-div{
         width: 100%;
-        height: calc(100% - 36px);
+        height: calc(100% - 42px);
         padding: 12px 2px;
     }
 }

@@ -1,0 +1,49 @@
+#right-content-div > div {
+    /*background-color: orange;*/
+}
+#right-content-div div{padding: unset;}
+div#game-root{
+    min-width: 300px;
+    margin: 0 auto;
+}
+div#desc-root{
+    margin-bottom: 20px;
+    font-size: 10px;
+}
+div#matrix-root{
+    margin-top: 10px;
+}
+.matrix-row{
+    overflow: hidden;
+    margin: 0 auto;
+}
+.matrix-row::after{
+    clear: both;
+    content: ' ';
+}
+.matrix-row .matrix-col{
+    float: left;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    border: 1px #9C27B0 dotted;
+    text-align: center;
+    line-height: 38px;
+    border-radius: 8px;
+}
+.matrix-row .matrix-col.selected{
+    background-color: #8BC34A;
+}
+.matrix-row .matrix-col.danger{
+    background-color: #F44336;
+}
+.matrix-row .matrix-col.selected.danger{
+    background-color: yellow;
+}
+div#console-root{
+    height: 125px;
+    margin: 40px auto 0 auto;
+    overflow-y: auto;
+    font-family: Tahoma;
+    font-size: 13px;
+}

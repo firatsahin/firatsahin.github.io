@@ -11,7 +11,7 @@
         (function () {
             // add css & js with cache-breaker urls
             let cssRefs = ['css/main.css', 'css/responsive.css'];
-            let jsRefs = ['js/helpers.js', 'js/main.js'];
+            let jsRefs = ['js/helpers.js', 'js/hash-navigation.js', 'js/main.js'];
             cssRefs.forEach(function (url) {
                 $("<link/>", { // append css
                     rel: "stylesheet",
@@ -69,6 +69,7 @@
         <div class="left-menu-subgroup-title">Games</div>
         <ul>
             <li><a href="#/module/find-the-celebrity">Find the Celebrity?</a></li>
+            <li><a href="#/module/offense-defense-game">Offense/Defense Game</a></li>
         </ul>
     </div>
 </div>

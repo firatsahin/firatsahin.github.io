@@ -5,19 +5,19 @@ moduleOn = () => {
     let arr = [];
     let arrLength = 1000000;
     let t1 = Date.now();
-    for (let i = 0; i < arrLength; i++) arr.push(getRandomInteger(0, 10));
+    for (let i = 0; i < arrLength; i++) arr.push(h.getRandomInteger(0, 10));
     let t2 = Date.now();
     l("array creation:", t2 - t1, "ms");
     l("arr:", arr);
-    printf("array created(length:" + arrLength + ") with random values [0~10]: " + JSON.stringify(arr) + "<br/>in " + (t2 - t1) + "ms", moduleRoot);
+    printf("array created(length:" + arrLength + ") with random values [0~10]: " + JSON.stringify(arr) + getTimeDifHtml(t1, t2), moduleRoot);
 
     t1 = Date.now();
-    let randIndex = getRandomInteger(0, arr.length);
+    let randIndex = h.getRandomInteger(0, arr.length);
     let b = arr[randIndex];
     t2 = Date.now();
     l("access random element:", t2 - t1, "ms");
     l("arr[" + randIndex + "]:", b);
-    printf("access random element: " + "arr[" + randIndex + "]:" + b + "<br/>in " + (t2 - t1) + "ms", moduleRoot);
+    printf("access random element: " + "arr[" + randIndex + "]:" + b + getTimeDifHtml(t1, t2), moduleRoot);
 
     t1 = Date.now();
     let arrSum = 0;
@@ -26,7 +26,7 @@ moduleOn = () => {
     t2 = Date.now();
     l("average calculation:", t2 - t1, "ms");
     l("arrAvg:", arrAvg);
-    printf("average calculation: " + "arrAvg:" + arrAvg + "<br/>in " + (t2 - t1) + "ms", moduleRoot);
+    printf("average calculation: " + "arrAvg:" + arrAvg + getTimeDifHtml(t1, t2), moduleRoot);
 
     // calculate how many length:5 sub arrays has total % 10 = 0
     let subArrLength = 25;
@@ -43,7 +43,7 @@ moduleOn = () => {
     t2 = Date.now();
     l("sub array calculation:", t2 - t1, "ms");
     l("howMany sub arrays (1st way w/inner for loop):", howMany);
-    printf("sub array calculation (1st way w/inner for loop): " + "howMany sub arrays(length:" + subArrLength + " AND total%10==0):" + howMany + "<br/>in " + (t2 - t1) + "ms", moduleRoot);
+    printf("sub array calculation (1st way w/inner for loop): " + "howMany sub arrays(length:" + subArrLength + " AND total%10==0):" + howMany + getTimeDifHtml(t1, t2), moduleRoot);
 
     // howMany sub arrays (2nd way)
     t1 = Date.now();
@@ -57,7 +57,7 @@ moduleOn = () => {
     t2 = Date.now();
     l("sub array calculation:", t2 - t1, "ms");
     l("howMany sub arrays (2nd way w/sliding total) (more efficient):", howMany2);
-    printf("sub array calculation (2nd way w/sliding total) (more efficient): " + "howMany sub arrays(length:" + subArrLength + " AND total%10==0):" + howMany + "<br/>in " + (t2 - t1) + "ms", moduleRoot);
+    printf("sub array calculation (2nd way w/sliding total) (more efficient): " + "howMany sub arrays(length:" + subArrLength + " AND total%10==0):" + howMany + getTimeDifHtml(t1, t2), moduleRoot);
 
     let integers = [121, -121, 10, -101, 0, 5, 4578921, 2442, 2589852, 258852, 6547896354123654, 33, 74];
     l("integers:", integers);
@@ -96,7 +96,7 @@ moduleOn = () => {
     for (let x in integers) isPalindromeResults.push(isPalindrome(integers[x]));
     t2 = Date.now();
     l("isPalindrome:", isPalindromeResults, "in", t2 - t1, "ms");
-    printf("check if each integer in array is palindrome or not (without converting number to string): " + JSON.stringify(isPalindromeResults) + "<br/>in " + (t2 - t1) + "ms", moduleRoot);
+    printf("check if each integer in array is palindrome or not (without converting number to string): " + JSON.stringify(isPalindromeResults) + getTimeDifHtml(t1, t2), moduleRoot);
 
     // array[int] reverse (without using a temp variable)
     function reverseArray(arr) {
@@ -113,7 +113,7 @@ moduleOn = () => {
     reverseArray(integers);
     t2 = Date.now();
     l("reverse integer array (without using a temp variable):", integers, "in", t2 - t1, "ms");
-    printf("reverse integer array (without using a temp variable): " + JSON.stringify(integers) + "<br/>in " + (t2 - t1) + "ms", moduleRoot);
+    printf("reverse integer array (without using a temp variable): " + JSON.stringify(integers) + getTimeDifHtml(t1, t2), moduleRoot);
 }
 
 moduleOff = () => {

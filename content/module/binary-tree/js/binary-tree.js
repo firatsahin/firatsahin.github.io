@@ -77,19 +77,19 @@ moduleOn = () => {
     }
 
     // create the tree
-    let bTreeRoot = new TreeNode(getRandomInteger(1,100));
-    bTreeRoot.left = new TreeNode(getRandomInteger(1,100));
-    bTreeRoot.right = new TreeNode(getRandomInteger(1,100));
-    bTreeRoot.left.left = new TreeNode(getRandomInteger(1,100));
-    bTreeRoot.left.left.right = new TreeNode(getRandomInteger(1,100));
-    bTreeRoot.left.left.right.left = new TreeNode(getRandomInteger(1,100));
-    bTreeRoot.left.left.right.right = new TreeNode(getRandomInteger(1,100));
-    bTreeRoot.left.right = new TreeNode(getRandomInteger(1,100));
-    bTreeRoot.right.right = new TreeNode(getRandomInteger(1,100));
-    bTreeRoot.right.left = new TreeNode(getRandomInteger(1,100));
-    bTreeRoot.right.right.left = new TreeNode(getRandomInteger(1,100));
-    bTreeRoot.right.right.left.right = new TreeNode(getRandomInteger(1,100));
-    bTreeRoot.right.right.left.right.left = new TreeNode(getRandomInteger(1,100));
+    let bTreeRoot = new TreeNode(h.getRandomInteger(1,100));
+    bTreeRoot.left = new TreeNode(h.getRandomInteger(1,100));
+    bTreeRoot.right = new TreeNode(h.getRandomInteger(1,100));
+    bTreeRoot.left.left = new TreeNode(h.getRandomInteger(1,100));
+    bTreeRoot.left.left.right = new TreeNode(h.getRandomInteger(1,100));
+    bTreeRoot.left.left.right.left = new TreeNode(h.getRandomInteger(1,100));
+    bTreeRoot.left.left.right.right = new TreeNode(h.getRandomInteger(1,100));
+    bTreeRoot.left.right = new TreeNode(h.getRandomInteger(1,100));
+    bTreeRoot.right.right = new TreeNode(h.getRandomInteger(1,100));
+    bTreeRoot.right.left = new TreeNode(h.getRandomInteger(1,100));
+    bTreeRoot.right.right.left = new TreeNode(h.getRandomInteger(1,100));
+    bTreeRoot.right.right.left.right = new TreeNode(h.getRandomInteger(1,100));
+    bTreeRoot.right.right.left.right.left = new TreeNode(h.getRandomInteger(1,100));
 
     l("tree created:", bTreeRoot);
     printf('<pre>tree created: <code>' + JSON.stringify(bTreeRoot, null, 0) + '</code></pre>', moduleRoot);

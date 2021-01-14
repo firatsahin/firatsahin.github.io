@@ -82,3 +82,12 @@ img#avatar-img{
     padding: 10px 16px;
     margin: 4px 0;
 }
+#right-content-div > div > div.printf-div span.time-dif-span{
+    background-color: #CDDC39;
+    font-size: 11px;
+    display: inline-block;
+    margin-top: 4px;
+}
+#right-content-div > div > div.printf-div span.time-dif-span span.time-dif-inner-span{
+    color: mediumblue;
+}
