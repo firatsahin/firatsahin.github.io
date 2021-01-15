@@ -57,15 +57,17 @@ moduleOn = () => {
             }
             if (!level) level = 0;
             if (!direction) direction = 'root';
+            let drawWidth = typeof bTreeDrawWidth === 'number' ? bTreeDrawWidth : 500; // tree drawing width
             let nodeElm = $("<div>").addClass('b-tree-node').addClass(direction).html('<div class="b-tree-node-val">' + this.val + '</div>').appendTo(targetDiv);
+            if (direction === 'root') nodeElm.css('width', drawWidth);
             if (direction === 'left') {
                 let lineFromLeft = $("<div>").addClass('line-from-left-node').prependTo(nodeElm);
-                var angle = Math.atan2((44), (lineFromLeft.width())) * (180 / Math.PI);
+                let angle = Math.atan2((44), (drawWidth / Math.pow(2, level + 1))) * (180 / Math.PI);
                 lineFromLeft.css('transform', 'rotateZ(-' + angle + 'deg)');
             }
             if (direction === 'right') {
                 let lineFromRight = $("<div>").addClass('line-from-right-node').prependTo(nodeElm);
-                var angle = Math.atan2((44), (lineFromRight.width())) * (180 / Math.PI);
+                let angle = Math.atan2((44), (drawWidth / Math.pow(2, level + 1))) * (180 / Math.PI);
                 lineFromRight.css('transform', 'rotateZ(' + angle + 'deg)');
             }
             if (this.left) this.left.drawTree(nodeElm, level + 1, 'left'); else if (this.right) $("<div>").css({
@@ -94,6 +96,7 @@ moduleOn = () => {
     l("tree created:", bTreeRoot);
     printf('<pre>tree created: <code>' + JSON.stringify(bTreeRoot, null, 0) + '</code></pre>', moduleRoot);
     let bTreeRootDiv = printf('tree drawn:', moduleRoot).addClass('btree-draw-root');
+    let bTreeDrawWidth = 600; // to override default width
     bTreeRoot.drawTree(bTreeRootDiv);
 
     // navigate (depth first)

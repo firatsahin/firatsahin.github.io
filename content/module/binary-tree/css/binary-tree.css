@@ -10,7 +10,6 @@ div.b-tree-node:after{
     clear: both;
 }
 div.b-tree-node.root {
-    width: 500px;
     margin: 0 auto;
 }
 div.b-tree-node.left{

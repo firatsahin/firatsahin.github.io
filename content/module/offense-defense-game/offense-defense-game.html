@@ -3,6 +3,45 @@
     <div id="desc-root"></div>
     <div id="scoreboard-root">
         <span><select id="level-ddl"></select></span>
+        <div id="custom-level-config-root">
+            <h3 style="margin: 0 0 6px 0;">Custom Level Settings</h3>
+            <div>
+                <div class="left" style="width: 50%;">
+                    Matrix: <input type="number" min="4" max="30" binding="customLevel.rows"> X <input type="number" min="4" max="30" binding="customLevel.cols">
+                </div>
+                <div class="left" style="width: 50%;">
+                    Enemy Speed: <input type="number" min="10" max="3000" step="10" binding="customLevel.interval"> ms
+                    <br>
+                    <span style="font-size: 10px;">(Lower value makes a faster enemy!)</span>
+                </div>
+                <div class="left" style="width: 50%;">
+                    Max Val in a box: <input type="number" min="1" max="100" binding="customLevel.boxMax">
+                </div>
+                <div class="left" style="width: 50%;">
+                    Target Score (to win): <input type="number" min="1" max="1000" binding="customLevel.target">
+                </div>
+                <div class="left" style="width: 50%;">
+                    Time: <input type="number" min="10" max="1000" binding="customLevel.time"> sec
+                </div>
+                <div class="left" style="width: 50%;">
+                    Enemy Behaviour:
+                    <select binding="customLevel.dangerBehaviour">
+                        <option value="randomMove">Randomly Moving</option>
+                        <option value="chaseMe">Chasing Me</option>
+                    </select>
+                </div>
+                <div class="left" style="width: 50%;">
+                    <label>Enemy Moves Diagonally too: <input type="checkbox" binding="customLevel.withDiagonals"></label>
+                </div>
+                <div class="left" style="width: 50%;">
+                    <label>Enemy Self-Defense: <input type="checkbox" binding="customLevel.selfDefense"></label>
+                </div>
+                <div class="clear"></div>
+                <div>
+                    <button name="custom-level-apply-settings" style="width: 100%; margin-top: 12px; padding: 9px;">Create Custom Game</button>
+                </div>
+            </div>
+        </div>
         <span style="width: 10px; display: inline-block;"></span>
         <span>Score: <b id="score-elm"></b></span>
         <span style="width: 10px; display: inline-block;"></span>
@@ -12,4 +51,26 @@
     </div>
     <div id="matrix-root"></div>
     <div id="console-root"></div>
+    <div id="mobile-controller-root">
+        <div style="width: 200px; margin: 0 auto;">
+            <div class="left"></div>
+            <div class="left">
+                <a href="#" class="movement-button" direction="up">🡹</a>
+            </div>
+            <div class="left"></div>
+            <div class="clear"></div>
+        </div>
+        <div style="width: 200px; margin: 0 auto;">
+            <div class="left">
+                <a href="#" class="movement-button" direction="left">🡸</a>
+            </div>
+            <div class="left">
+                <a href="#" class="movement-button" direction="down">🡻</a>
+            </div>
+            <div class="left">
+                <a href="#" class="movement-button" direction="right">🡺</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
 </div>

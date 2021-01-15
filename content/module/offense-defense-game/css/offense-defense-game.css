@@ -3,12 +3,19 @@
 }
 #right-content-div div{padding: unset;}
 div#game-root{
-    min-width: 300px;
+    min-width: 320px;
     margin: 0 auto;
 }
 div#desc-root{
     margin-bottom: 20px;
     font-size: 10px;
+}
+div#custom-level-config-root{
+    display: none;
+    border: 1px gray dashed;
+    padding: 7px 5px;
+    margin: 11px 0;
+    border-radius: 4px;
 }
 div#matrix-root{
     margin-top: 10px;
@@ -46,4 +53,38 @@ div#console-root{
     overflow-y: auto;
     font-family: Tahoma;
     font-size: 13px;
+}
+div#mobile-controller-root{
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    padding-top: 10px;
+    background-color: #FFC107;
+    opacity: .7;
+}
+div#mobile-controller-root a.movement-button{
+    display: block;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 62px;
+    font-size: 29px;
+    text-decoration: none;
+    background-color: bisque;
+    border-radius: 10px;
+}
+div#mobile-controller-root a.movement-button[direction=up]{
+    margin-left: 70px;
+    margin-bottom: 10px;
+}
+div#mobile-controller-root a.movement-button[direction=left]{
+}
+div#mobile-controller-root a.movement-button[direction=down]{
+    margin-left: 10px;
+}
+div#mobile-controller-root a.movement-button[direction=right]{
+    margin-left: 10px;
 }
