@@ -27,6 +27,7 @@
         border-left: 1px #8BC34A dashed;
         background-color: aliceblue;
         cursor: pointer;
+        user-select: none;
     }
     #left-side-menu-div{
         position: fixed;

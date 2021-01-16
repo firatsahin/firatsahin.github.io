@@ -8,28 +8,70 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
+        let isLocalhost = location.hostname === 'localhost';
+        let globalNow = Date.now();
+        if (!isLocalhost) globalNow -= globalNow % (60000 * 5); // on localhost: always break cache / on GitHub: break cache every 5 minutes
+        //console.log("globalNow:", globalNow, "where we are:", (Date.now() - globalNow) / 1000 / 60);
+        let includeRef = {
+            cssTo: (paths, elm, cbFn) => {
+                if (typeof paths === 'string') paths = [paths];
+                let promises = [];
+                paths.forEach(function (path, i) {
+                    promises.push(new Promise((resolve, reject) => {
+                        let link = $("<link/>", { // append css
+                            rel: "stylesheet",
+                            type: "text/css",
+                            href: path + '?_=' + globalNow
+                        }).appendTo(elm)[0];
+                        //console.log("css[" + i + "] appended:", Date.now() % 60000);
+                        link.onload = function () {
+                            //console.log("css[" + i + "] ready (onload):", Date.now() % 60000);
+                            resolve("css[" + i + "] ready");
+                        }
+                    }));
+                });
+                Promise.all(promises).then((data) => {
+                    if (typeof cbFn === 'function') cbFn();
+                });
+            },
+            jsTo: (paths, cbFn) => {
+                if (typeof paths === 'string') paths = [paths];
+                let promises = [];
+                paths.forEach(function (path, i) {
+                    promises.push(new Promise((resolve, reject) => {
+                        $.ajax({
+                            url: path + '?_=' + globalNow,
+                            dataType: 'text'
+                        }).then(function (result) {
+                            //console.log("js[" + i + "] ready:", Date.now() % 60000);
+                            resolve(result);
+                        }, function (err) {
+                            reject(err);
+                        });
+                        //console.log("js[" + i + "] requested:", Date.now() % 60000);
+                    }));
+                });
+                Promise.all(promises).then((data) => { // sequential execution of js scripts
+                    //console.log("all js retrieved:", data);
+                    data.forEach(function (result) {
+                        jQuery.globalEval(result);
+                    });
+                    if (typeof cbFn === 'function') cbFn();
+                });
+            }
+        };
+
         (function () {
             // add css & js with cache-breaker urls
             let cssRefs = ['css/main.css', 'css/responsive.css'];
             let jsRefs = ['js/helpers.js', 'js/hash-navigation.js', 'js/main.js'];
-            cssRefs.forEach(function (url) {
-                $("<link/>", { // append css
-                    rel: "stylesheet",
-                    type: "text/css",
-                    href: url + '?_=' + Date.now()
-                }).appendTo("head");
+
+            includeRef.cssTo(cssRefs, "head", () => { // load css refs
+                //console.log("All css load completed:", Date.now() % 60000);
+                includeRef.jsTo(jsRefs, () => {
+                    //l("all js executed");
+                }); // then load js refs too
             });
-            let jsRefIndex = 0;
-
-            function loadNextJs() { // for execution order, we needed this function
-                if (jsRefIndex >= jsRefs.length) return;
-                $.getScript(jsRefs[jsRefIndex], function () {
-                    jsRefIndex++;
-                    loadNextJs();
-                }); // get & execute js (has cache-breaker inside)
-            }
-
-            loadNextJs();
         })();
     </script>
 </head>

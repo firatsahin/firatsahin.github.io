@@ -91,3 +91,9 @@ img#avatar-img{
 #right-content-div > div > div.printf-div span.time-dif-span span.time-dif-inner-span{
     color: mediumblue;
 }
+
+#right-content-div > div.module-load-error-msg {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}

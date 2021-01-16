@@ -49,24 +49,33 @@ $(window).bind("hashchange", function (e) {
 
     rootDiv.empty();
     if (hashSegments.length > 1) { // advanced content (with js & css)
-        if (hashSegments[0] === 'module') {
-            $.get('content/module/' + hashSegments[1] + '/' + hashSegments[1] + '.html?_=' + Date.now()).then(function (result) {
-                $(result).appendTo(rootDiv); // append html
-                $("<link/>", { // append css
-                    rel: "stylesheet",
-                    type: "text/css",
-                    href: 'content/module/' + hashSegments[1] + '/css/' + hashSegments[1] + '.css?_=' + Date.now()
-                }).appendTo(rootDiv);
-                $.getScript('content/module/' + hashSegments[1] + '/js/' + hashSegments[1] + '.js', function () {
+        if (hashSegments[0] === 'module') { // MODULE LOAD ORDER: // html + css > then js
+            let promises = [];
+            promises.push(new Promise((resolve, reject) => { // html promise
+                $.get('content/module/' + hashSegments[1] + '/' + hashSegments[1] + '.html?_=' + globalNow).then(function (result) {
+                    resolve(result);
+                }, function (err) {
+                    reject(err);
+                });
+            }));
+            promises.push(new Promise((resolve, reject) => { // css promise
+                includeRef.cssTo('content/module/' + hashSegments[1] + '/css/' + hashSegments[1] + '.css', rootDiv, function () {
+                    resolve();
+                });
+            }));
+            Promise.all(promises).then((data) => { // html + css loaded
+                //l("html + css loaded", data);
+                $(data[0]).appendTo(rootDiv); // append module html
+                includeRef.jsTo('content/module/' + hashSegments[1] + '/js/' + hashSegments[1] + '.js', function () {
                     if (typeof moduleOn === 'function') setTimeout(moduleOn); // advantage of setTimeout here: [if moduleOn crashes inside, hash nav still works fine] (async task)
-                }); // get & execute js
-            }, function (err) {
-                l(err);
+                });
+            }, (err) => {
+                rootDiv.html('<div class="module-load-error-msg">Something unexpected happened while loading the module...</div>');
             });
             tipsDiv.removeClass('hidden');
         }
     } else { // static basic content
-        $.get('content/' + hashSegments[0] + '.html?_=' + Date.now()).then(function (result) {
+        $.get('content/' + hashSegments[0] + '.html?_=' + globalNow).then(function (result) {
             $(result).appendTo(rootDiv); // append html
         }, function (err) {
             l(err);
