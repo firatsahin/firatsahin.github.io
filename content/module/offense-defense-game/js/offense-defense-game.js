@@ -320,7 +320,7 @@
         });
 
         // our element's move event (mouse or touch)
-        $("#mobile-controller-root a.movement-button").click(function () {
+        $("#mobile-controller-root .movement-button").on((typeof window.ontouchstart === 'object' ? 'touchstart' : 'mousedown'), function () {
             if (gameState !== 'play') return;
             let direction = $(this).attr('direction');
             moveOurElementTo(direction);
@@ -353,7 +353,7 @@
                 let gameRootWidth = $("div#game-root").css('width', '100%').width();
                 let cellWHToBe = gameRootWidth / levels[currentLevel].cols;
                 let currentCellWH = parseInt($("#matrix-root .matrix-row .matrix-col").first().css('width'));
-                l("gameRootWidth:", gameRootWidth, "currentCellWH:", currentCellWH, "cellWHToBe:", cellWHToBe);
+                //l("gameRootWidth:", gameRootWidth, "currentCellWH:", currentCellWH, "cellWHToBe:", cellWHToBe);
 
                 if (cellWHToBe < currentCellWH)
                     $("#matrix-root .matrix-row .matrix-col").css({
@@ -366,7 +366,7 @@
                         'margin-left': (gameRootWidth - 2 - (40 * levels[currentLevel].cols)) / 2
                     });
 
-                $("#console-root").css('margin-bottom', 150);
+                $("#console-root").css('margin-bottom', $("#mobile-controller-root").css('height'));
                 $("#mobile-controller-root").show();
             } else {
                 //l("mobile normalize not needed");
