@@ -10,16 +10,17 @@
             if (change) score += parseInt(change) || 0;
             let currentLevel = getLevel();
             if (score >= levels[currentLevel].target) {
-                $("<div>").text('CONGRATS! YOU WON LEVEL ' + (currentLevel + 1) + '!').css('color', 'green').prependTo($("div#console-root")).hide().fadeIn();
+                $("<div>").text('CONGRATS! YOU WON ' + (currentLevel !== 999 ? 'LEVEL ' + (currentLevel + 1) : 'CUSTOM LEVEL') + '!').css('color', 'green').prependTo($("div#console-root")).hide().fadeIn();
                 if (levels[currentLevel + 1])
-                    $("<button>").text('Move on to the Next Level').css({'width': '100%', 'height': 40}).click(function () {
+                    $("<button>").text('You won! Move on to the Next Level').css({'width': '100%', 'height': 40, 'background-color': 'greenyellow'}).click(function () {
                         setLevel(getLevel() + 1);
                         prepareLevel();
                     }).appendTo($("div#matrix-root")).hide().fadeIn();
                 else
-                    $("<button>").text('Finished! Start Over The Game').css({
+                    $("<button>").text('CONGRATS! You finished the game! Start Over').css({
                         'width': '100%',
-                        'height': 40
+                        'height': 40,
+                        'background-color': 'greenyellow'
                     }).click(function () {
                         setLevel(0);
                         prepareLevel();
@@ -29,8 +30,8 @@
                 changeGameStateTo('stop');
             }
             if (score <= -levels[currentLevel].target) {
-                $("<div>").text('YOU HAVE LOST LEVEL ' + (currentLevel + 1) + '!').css('color', 'red').prependTo($("div#console-root")).hide().fadeIn();
-                $("<button>").text('Retry This Level Again').css({'width': '100%', 'height': 40}).click(function () {
+                $("<div>").text('YOU HAVE LOST ' + (currentLevel !== 999 ? 'LEVEL ' + (currentLevel + 1) : 'CUSTOM LEVEL') + '!').css('color', 'red').prependTo($("div#console-root")).hide().fadeIn();
+                $("<button>").text('You lost! Retry This Level Again').css({'width': '100%', 'height': 40, 'background-color': 'orangered'}).click(function () {
                     prepareLevel();
                 }).appendTo($("div#matrix-root")).hide().fadeIn();
                 clearInterval(dangerMoverInterval);
@@ -171,8 +172,8 @@
                 timeLeft--;
                 updateTime();
                 if (timeLeft <= 0) { // time over
-                    $("<div>").text('YOU HAVE LOST LEVEL ' + (currentLevel + 1) + '! (Time is over!)').css('color', 'red').prependTo($("div#console-root")).hide().fadeIn();
-                    $("<button>").text('Try This Level Again').css({'width': '100%', 'height': 40}).click(function () {
+                    $("<div>").text('YOU HAVE LOST ' + (currentLevel !== 999 ? 'LEVEL ' + (currentLevel + 1) : 'CUSTOM LEVEL') + '! (Time is over!)').css('color', 'red').prependTo($("div#console-root")).hide().fadeIn();
+                    $("<button>").text('Time Over! Retry This Level Again').css({'width': '100%', 'height': 40, 'background-color': 'orangered'}).click(function () {
                         prepareLevel();
                     }).appendTo($("div#matrix-root")).hide().fadeIn();
                     clearInterval(dangerMoverInterval);
@@ -181,7 +182,7 @@
                 }
             }, 1000);
 
-            $("<button>").text('Start!').css({'width': '100%', 'height': 40}).click(function () {
+            $("<button>").text('Start!').css({'width': '100%', 'height': 40, 'background-color': 'greenyellow'}).click(function () {
                 $("<div>").text((currentLevel !== 999 ? 'Level ' + (currentLevel + 1) : 'Custom level') + ' started, good luck!').css('color', 'blue').prependTo($("div#console-root").empty()).hide().fadeIn();
                 changeGameStateTo('play');
                 $(this).remove();
@@ -285,7 +286,7 @@
             return parseInt($("select#level-ddl").val()) || 0;
         }
         function setLevel(lvl) {
-            $("select#level-ddl").val(lvl || 0)
+            $("select#level-ddl").val(lvl || 0).trigger('change');
         }
         let score; let matrix; let timeLeft;
 
@@ -320,10 +321,14 @@
         });
 
         // our element's move event (mouse or touch)
-        $("#mobile-controller-root .movement-button").on((typeof window.ontouchstart === 'object' ? 'touchstart' : 'mousedown'), function () {
+        $("#mobile-controller-root .movement-button").on((typeof window.ontouchstart === 'object' ? 'touchstart' : 'mousedown'), function (e) {
+            if (!e.defaultPrevented) e.preventDefault();
+            $(this).addClass('active');
             if (gameState !== 'play') return;
             let direction = $(this).attr('direction');
             moveOurElementTo(direction);
+        }).on((typeof window.ontouchstart === 'object' ? 'touchend' : 'mouseup'), function (e) {
+            $(this).removeClass('active');
         });
 
         // custom level config part events
@@ -346,7 +351,7 @@
 
         // normalizations for mobile mode
         function normalizeForMobile() {
-            if (window.matchMedia("screen and (max-width: 550px)").matches) {
+            if (window.matchMedia("screen and (max-width: 550px)").matches || typeof window.ontouchstart === 'object') {
                 //l("normalize for mobile");
                 let currentLevel = getLevel();
                 let windowWidth = $(window).width();
@@ -367,7 +372,7 @@
                     });
 
                 $("#console-root").css('margin-bottom', $("#mobile-controller-root").css('height'));
-                $("#mobile-controller-root").show();
+                $("#mobile-controller-root").removeClass('hidden');
             } else {
                 //l("mobile normalize not needed");
             }
