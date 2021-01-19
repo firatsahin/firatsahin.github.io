@@ -1,0 +1,12 @@
+#right-content-div > div {
+}
+
+#drag-me {
+    width: 200px;
+    height: 200px;
+    margin: 250px 0 0 100px;
+    position: absolute;
+    background: url('/img/frt_profile_pic.jpg') no-repeat center;
+    background-size: cover;
+    box-shadow: 0px 0px 10px 0px grey;
+}

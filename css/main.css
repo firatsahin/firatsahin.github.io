@@ -3,6 +3,7 @@ body{display: unset !important;}
 img{max-width: 100%;}
 *{box-sizing: border-box; font-family: monospace;}
 div{padding: 8px;}
+a{color: #0047cc;}
 .no-pad{padding: 0;}
 .no-x-pad{padding-left: 0; padding-right: 0;}
 .no-y-pad{padding-top: 0; padding-bottom: 0;}

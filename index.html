@@ -8,7 +8,7 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
-        let isLocalhost = location.hostname === 'localhost';
+        let isLocalhost = location.hostname !== 'firatsahin.github.io';
         let globalNow = Date.now();
         if (!isLocalhost) globalNow -= globalNow % (60000 * 5); // on localhost: always break cache / on GitHub: break cache every 5 minutes
         //console.log("globalNow:", globalNow, "where we are:", (Date.now() - globalNow) / 1000 / 60);
@@ -27,6 +27,9 @@
                         link.onload = function () {
                             //console.log("css[" + i + "] ready (onload):", Date.now() % 60000);
                             resolve("css[" + i + "] ready");
+                        }
+                        link.onerror = function (err) {
+                            reject(err);
                         }
                     }));
                 });
@@ -112,6 +115,20 @@
         <ul>
             <li><a href="#/module/find-the-celebrity">Find the Celebrity?</a></li>
             <li><a href="#/module/offense-defense-game">Offense/Defense Game</a></li>
+        </ul>
+    </div>
+
+    <div class="left-menu-subgroup">
+        <div class="left-menu-subgroup-title">Mobile Devices</div>
+        <ul>
+            <li><a href="#/module/multi-touch-events">Multi-Touch Events</a></li>
+        </ul>
+    </div>
+
+    <div class="left-menu-subgroup">
+        <div class="left-menu-subgroup-title">Test</div>
+        <ul>
+            <li><a href="#/module/playground">Playground</a></li>
         </ul>
     </div>
 </div>
