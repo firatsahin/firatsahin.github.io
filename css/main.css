@@ -21,17 +21,19 @@ a{color: #0047cc;}
     position: fixed;
     width: 100%;
     height: 100%;
-    z-index: 10;
+    z-index: 100;
     opacity: 0.7;
 }
 #left-side-menu-div{
-    float: left;
-    width: 200px;
+    position: fixed;
+    width: 225px;
     height: 100%;
     border-right: 1px lightgray dashed;
     background-color: aliceblue;
     text-align: center;
-    overflow-y: auto;
+    z-index: 101;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    padding: 0;
 }
 img#avatar-img{
     width: 100px;
@@ -39,9 +41,17 @@ img#avatar-img{
     margin: 0 auto;
     display: block;
 }
+.left-menu-outer-wrap{
+    overflow-y: auto;
+    height: calc(100% - 230px);
+    padding: 0 6px;
+}
 .left-menu-subgroup{
     padding: 0;
     margin-top: 20px;
+}
+.left-menu-subgroup:first-child{
+    margin-top: 5px;
 }
 .left-menu-subgroup-title{
     padding: 0 0 0 9px;
@@ -58,17 +68,22 @@ img#avatar-img{
     background-color: cyan;
 }
 
+#left-side-menu-footer{
+    font-size: 10px;
+    margin-top: 20px;
+}
+
 #tips-div {
     position: absolute;
-    left: 200px;
+    left: 225px;
     font-size: 10px;
     padding: 3px 6px;
     background-color: antiquewhite;
 }
 
 #right-content-div{
-    float: left;
-    width: calc(100% - 200px);
+    float: right;
+    width: calc(100% - 225px);
     height: 100%;
     overflow-y: auto;
     background-color: snow;

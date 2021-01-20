@@ -26,6 +26,8 @@ $(function () {
     // overlay click event
     $("#overlay").click(function () {
         $("body").removeClass('side-menu-open');
-    })
+    });
+
+    $("#left-side-menu-footer #footer-year").text(new Date().getFullYear());
 });
 // document ready - END

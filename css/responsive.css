@@ -1,6 +1,10 @@
 @media screen and (max-width: 550px) {
-    body{
-
+    html, body {
+        overflow: unset;
+        overscroll-behavior-y: contain; /* to prevent refresh on pull down */
+    }
+    body {
+        overflow-x: hidden;
     }
     #mobile-header-div{
         display: block;
@@ -8,6 +12,10 @@
         height: 42px;
         background-color: aliceblue;
         border-bottom: 1px #CDDC39 dashed;
+        position: fixed;
+        width: 100%;
+        z-index: 99;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
     }
     #mobile-header-div:after{
         content: '';
@@ -31,21 +39,24 @@
     }
     #left-side-menu-div{
         position: fixed;
-        left: -200px;
+        left: -225px;
         top: 0;
-        z-index: 11;
         transition: left .2s ease-out;
     }
+    body.side-menu-open{overflow: hidden;}
     body.side-menu-open #left-side-menu-div{
         left: 0;
     }
     body.side-menu-open #overlay{display: block;}
     #tips-div{
         left: 0;
+        top: 42px;
     }
     #right-content-div{
         width: 100%;
-        height: calc(100% - 42px);
-        padding: 12px 2px;
+        height: unset;
+        padding: 48px 2px 8px 2px;
+        overflow-y: unset;
+        min-height: 100%;
     }
 }

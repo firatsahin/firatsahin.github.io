@@ -7,6 +7,11 @@ moduleOn = () => {
         return;
     }
 
+    // our element to play with
+    let ourElm = $("#our-element");
+    let minWH = [150, 150];
+    let maxWH = [600, 600];
+
     // touch event testing
     let lastTouchState = null;
     let writeTouches = () => { // logs all touches on the screen with X-Y
@@ -17,31 +22,31 @@ moduleOn = () => {
     };
 
     // initial states of the element
-    let dragMeXY;
-    let dragMeWH;
-    let dragMeRotate;
+    let ourElmXY;
+    let ourElmWH;
+    let ourElmRotate;
 
-    $("body").on({
+    ourElm.on({
         touchstart: function (e) {
             if (!e.defaultPrevented) e.preventDefault();
             l("touch started");
             lastTouchState = e.touches;
             writeTouches();
 
-            if (e.touches.length === 1) dragMeXY = [parseInt($("#drag-me").css('margin-left')) || 0, parseInt($("#drag-me").css('margin-top')) || 0];
+            if (e.touches.length === 1) ourElmXY = [parseInt(ourElm.css('margin-left')) || 0, parseInt(ourElm.css('margin-top')) || 0];
             if (e.touches.length === 2) {
-                dragMeXY = [parseInt($("#drag-me").css('margin-left')) || 0, parseInt($("#drag-me").css('margin-top')) || 0];
-                dragMeWH = [parseInt($("#drag-me").css('width')), parseInt($("#drag-me").css('height'))];
-                dragMeRotate = $("#drag-me").css('transform') !== 'none' ? parseInt($("#drag-me")[0].style.transform.replace('rotate(', '')) : 0;
+                ourElmXY = [parseInt(ourElm.css('margin-left')) || 0, parseInt(ourElm.css('margin-top')) || 0];
+                ourElmWH = [parseInt(ourElm.css('width')), parseInt(ourElm.css('height'))];
+                ourElmRotate = ourElm.css('transform') !== 'none' ? parseInt(ourElm[0].style.transform.replace('rotate(', '')) : 0;
             }
         },
         touchmove: function (e) {
             //l("touch moving");
             if (e.touches.length === 1) { // single-touch move event (drag something)
                 let xyDifs = [parseInt(e.touches[0].screenX - lastTouchState[0].screenX), parseInt(e.touches[0].screenY - lastTouchState[0].screenY)];
-                $("#drag-me").css({
-                    'margin-left': dragMeXY[0] + xyDifs[0],
-                    'margin-top': dragMeXY[1] + xyDifs[1]
+                ourElm.css({
+                    'margin-left': ourElmXY[0] + xyDifs[0],
+                    'margin-top': ourElmXY[1] + xyDifs[1]
                 });
                 moduleRoot.find("#current-state-div").html("Dragged to: " + xyDifs[0] + "x" + xyDifs[1]);
             }
@@ -56,12 +61,23 @@ moduleOn = () => {
                 let newDistance = Math.sqrt(Math.pow(e.touches[0].screenX - e.touches[1].screenX, 2) + Math.pow(e.touches[0].screenY - e.touches[1].screenY, 2));
                 let zoomRatio = newDistance / lastDistance;
                 let distanceDiff = newDistance - lastDistance;
+                let newWH = [ourElmWH[0] + distanceDiff, ourElmWH[1] + distanceDiff];
+
+                // min-max width-height filtering
+                for (let i = 0; i <= 1; i++) { // 0: width | 1: height
+                    if (newWH[i] < minWH[i]) newWH[i] = minWH[i]; // min restriction
+                    else if (newWH[i] > maxWH[i]) newWH[i] = maxWH[i]; // max restriction
+                }
+
+                // subtractions from margins (to keep it centered)
+                let marginLSub = (newWH[0] - ourElmWH[0]) / 2;
+                let marginRSub = (newWH[1] - ourElmWH[1]) / 2;
 
                 // angle calculation (for rotate action)
                 let lastAngle = Math.atan2(lastTouchState[0].screenX - lastTouchState[1].screenX, lastTouchState[0].screenY - lastTouchState[1].screenY) * (180 / Math.PI);
                 let newAngle = Math.atan2(e.touches[0].screenX - e.touches[1].screenX, e.touches[0].screenY - e.touches[1].screenY) * (180 / Math.PI);
                 let angleDiff = lastAngle - newAngle;
-                let newRotate = (dragMeRotate + angleDiff).mod(360);
+                let newRotate = (ourElmRotate + angleDiff).mod(360);
 
                 // snap feature for rotate
                 if ($("[binding='settings.snapOnRotate']").prop('checked')) {
@@ -72,11 +88,11 @@ moduleOn = () => {
                     });
                 }
 
-                $("#drag-me").css({
-                    'width': dragMeWH[0] + distanceDiff,
-                    'height': dragMeWH[1] + distanceDiff,
-                    'margin-left': dragMeXY[0] - (distanceDiff / 2) + centerPointDiffs[0],
-                    'margin-top': dragMeXY[1] - (distanceDiff / 2) + centerPointDiffs[1],
+                ourElm.css({
+                    'width': newWH[0],
+                    'height': newWH[1],
+                    'margin-left': ourElmXY[0] + centerPointDiffs[0] - marginLSub,
+                    'margin-top': ourElmXY[1] + centerPointDiffs[1] - marginRSub,
                     'transform': 'rotate(' + newRotate + 'deg)'
                 });
                 moduleRoot.find("#current-state-div").html("Dragged to: " + centerPointDiffs[0] + "x" + centerPointDiffs[1] +
@@ -89,13 +105,13 @@ moduleOn = () => {
             l("touch ended");
             lastTouchState = e.touches;
             writeTouches();
-            if (e.touches.length === 1) dragMeXY = [parseInt($("#drag-me").css('margin-left')) || 0, parseInt($("#drag-me").css('margin-top')) || 0];
+            if (e.touches.length === 1) ourElmXY = [parseInt(ourElm.css('margin-left')) || 0, parseInt(ourElm.css('margin-top')) || 0];
         },
         touchcancel: function (e) {
             l("touch canceled");
             lastTouchState = e.touches;
             writeTouches();
-            if (e.touches.length === 1) dragMeXY = [parseInt($("#drag-me").css('margin-left')) || 0, parseInt($("#drag-me").css('margin-top')) || 0];
+            if (e.touches.length === 1) ourElmXY = [parseInt(ourElm.css('margin-left')) || 0, parseInt(ourElm.css('margin-top')) || 0];
         }
     });
 }

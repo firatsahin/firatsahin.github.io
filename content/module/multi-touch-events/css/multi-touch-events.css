@@ -1,7 +1,10 @@
+body{
+    overflow-y: hidden;
+}
 #right-content-div > div {
 }
 
-#drag-me {
+#our-element {
     width: 200px;
     height: 200px;
     margin: 250px 0 0 100px;
