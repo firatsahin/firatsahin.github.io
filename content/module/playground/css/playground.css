@@ -1,2 +1,17 @@
 #right-content-div > div {
+    max-width: 500px;
+}
+
+#js-to-execute{
+    width: 100%;
+    height: 200px;
+}
+
+#execute-js{
+    width: 100%;
+    padding: 6px;
+}
+
+#console-root > div{
+    padding: 2px;
 }

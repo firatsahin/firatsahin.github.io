@@ -10,8 +10,16 @@
     <script type="text/javascript">
         let isLocalhost = location.hostname !== 'firatsahin.github.io';
         let globalNow = Date.now();
-        if (!isLocalhost) globalNow -= globalNow % (60000 * 5); // on localhost: always break cache / on GitHub: break cache every 5 minutes
-        //console.log("globalNow:", globalNow, "where we are:", (Date.now() - globalNow) / 1000 / 60);
+        if (!isLocalhost) { // on localhost: always break cache / on GitHub: break cache every day
+            //globalNow -= globalNow % (60000 * 60 * 24); // old approach
+            let nowDate = new Date(globalNow), month = (nowDate.getMonth() + 1).toString(),
+                day = nowDate.getDate().toString();
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+            //console.log("nowDate:", nowDate, nowDate.getFullYear().toString(), month, day);
+            globalNow = nowDate.getFullYear().toString() + month + day + '_001'; // deploy version (for multiple commits in a day)
+            //console.log("globalNow (combined w/version):", globalNow);
+        } //else console.log("globalNow:", globalNow);
         let includeRef = {
             cssTo: (paths, elm, cbFn) => {
                 if (typeof paths === 'string') paths = [paths];
@@ -108,8 +116,9 @@
         <div class="left-menu-subgroup">
             <div class="left-menu-subgroup-title">Examples</div>
             <ul>
-                <li><a href="#/module/binary-tree">Binary Tree Examples</a></li>
+                <li><a href="#/module/binary-tree">Binary Tree</a></li>
                 <li><a href="#/module/array-ops">Array Operations</a></li>
+                <li><a href="#/module/binary-search">Binary Search</a></li>
             </ul>
         </div>
 
