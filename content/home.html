@@ -6,8 +6,77 @@
         <br><br>
         Please use left menu to navigate. Thanks 😊
     </div>
+    <div id="tumlb-root">
+        <h3>Things You May Like Browsing</h3>
+        <div id="tumlb-items-wrapper">
+            <a href="#/module/offense-defense-game" class="tumlb-item">
+                <div class="tumlb-item-img" style="background-image: url('/img/module-ss/offense-defense-game.jpg');"></div>
+                <div class="tumlb-item-title">Offense/Defense Game</div>
+            </a>
+            <a href="#/module/binary-tree" class="tumlb-item">
+                <div class="tumlb-item-img" style="background-image: url('/img/module-ss/binary-tree.jpg');"></div>
+                <div class="tumlb-item-title">Binary Tree</div>
+            </a>
+            <a href="#/module/multi-touch-events" class="tumlb-item">
+                <div class="tumlb-item-img" style="background-image: url('/img/module-ss/multi-touch-events.jpg');"></div>
+                <div class="tumlb-item-title">Multi-Touch Events</div>
+            </a>
+            <a href="#/module/binary-search" class="tumlb-item">
+                <div class="tumlb-item-img" style="background-image: url('/img/module-ss/binary-search.jpg');"></div>
+                <div class="tumlb-item-title">Binary Search</div>
+            </a>
+        </div>
+    </div>
 </div>
 
 <style>
-    #home-root{text-align: center; padding-top: 90px;}
+    #home-root {
+        text-align: center;
+        padding-top: 70px;
+    }
+
+    #tumlb-root {
+        text-align: left;
+        width: 900px;
+        margin: 50px auto 0 auto;
+    }
+
+    #tumlb-items-wrapper{padding: 0;}
+    #tumlb-items-wrapper:after{clear: both;content:'';}
+
+    a.tumlb-item{
+        float: left;
+        width: calc(33.33% - 8px);
+        border: 1px #c3c3c3 dashed;
+        border-radius: 10px;
+        margin: 8px 4px;
+        text-decoration: unset;
+        overflow: hidden;
+    }
+    a.tumlb-item .tumlb-item-img{
+        height: 450px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: seashell;
+    }
+    a.tumlb-item .tumlb-item-title{
+        border-top: 1px #c3c3c3 dashed;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: system-ui;
+        padding: 5px 6px 6px;
+        background-color: ghostwhite;
+        text-align: center;
+    }
+
+    @media screen and (max-width: 1140px) { /* mobile + tablet mode (3 -> 2 threshold) */
+        #tumlb-root{width: 100%;}
+        a.tumlb-item{width: calc(50% - 8px);}
+        a.tumlb-item .tumlb-item-img{height: 400px;}
+    }
+
+    @media screen and (max-width: 750px) { /* 2 -> 1 threshold */
+        a.tumlb-item{width: calc(100% - 8px);}
+    }
 </style>
