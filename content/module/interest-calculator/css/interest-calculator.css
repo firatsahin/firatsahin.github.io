@@ -1,0 +1,7 @@
+#right-content-div > div {
+}
+
+input[type=number]{width: 80px;}
+button[name=btn-calculate-interest]{width: 100%; max-width: 500px; padding: 8px;}
+
+#results-root{margin-top: 15px;}

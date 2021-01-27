@@ -8,10 +8,15 @@ a{color: #0047cc;}
 .no-x-pad{padding-left: 0; padding-right: 0;}
 .no-y-pad{padding-top: 0; padding-bottom: 0;}
 .hidden{display: none;}
+.hidden-on-live{display: none;}
 
 .left{float: left;}
 .right{float: right;}
 .clear{clear: both;}
+
+.row{padding: 0;overflow: hidden;}
+.row:after{content: '';clear: both;}
+.col{float: left;}
 
 #mobile-header-div{display: none;}
 

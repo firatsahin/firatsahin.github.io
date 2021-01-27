@@ -29,5 +29,7 @@ $(function () {
     });
 
     $("#left-side-menu-footer #footer-year").text(new Date().getFullYear());
+
+    if (isLocalhost) $(".hidden-on-live").removeClass('hidden-on-live');
 });
 // document ready - END

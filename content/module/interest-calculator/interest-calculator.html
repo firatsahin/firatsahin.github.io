@@ -1,0 +1,36 @@
+<div>
+    <h2>Interest Calculator</h2>
+
+    <div style="width: 100%; max-width: 500px;">
+        <div class="row">
+            <div class="col" style="width: 52%;">Base Amount:</div>
+            <div class="col" style="width: 48%;"><input type="number" binding="in.baseAmount" min="0"></div>
+        </div>
+
+        <div class="row">
+            <div class="col" style="width: 49%;">Interest Rate (Yearly):</div>
+            <div class="col" style="width: 51%;">% <input type="number" binding="in.yearlyRate" min="0" step="0.1"></div>
+        </div>
+
+        <div class="row">
+            <div class="col" style="width: 49%;">Tax Deducted (from Interest):</div>
+            <div class="col" style="width: 51%;">% <input type="number" binding="in.taxDeducted" min="0" max="100" step="0.1"></div>
+        </div>
+    </div>
+
+    <button name="btn-calculate-interest">Calculate</button>
+
+    <div id="results-root">
+        <h2>Calculation Results</h2>
+        Real Interest Rate: % <b binding="out.realInterestRate">N/A</b>
+        <br><br>
+        Yearly Interest (Net): <b binding="out.yearlyInterestN" style="color: darkblue;">N/A</b><br>(Gross: <span binding="out.yearlyInterestG">N/A</span>)
+        <br><br>
+        Monthly(Average) Interest (Net): <b binding="out.monthlyAvgInterestN" style="color: blue; text-decoration: underline;">N/A</b><br>(Gross: <span binding="out.monthlyAvgInterestG">N/A</span>)
+        <br><br>
+        30 Days Interest (Net): <b binding="out.day30InterestN" style="color: green;">N/A</b><br>(Gross: <span binding="out.day30InterestG">N/A</span>)
+        <br><br>
+        Daily Interest (Net): <b binding="out.dailyInterestN" style="color: limegreen;">N/A</b><br>(Gross: <span binding="out.dailyInterestG">N/A</span>)
+    </div>
+
+</div>
