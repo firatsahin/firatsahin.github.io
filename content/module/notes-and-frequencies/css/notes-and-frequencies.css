@@ -1,0 +1,75 @@
+#right-content-div > div {
+}
+
+#keyboard-root-outer{
+    overflow-x: auto;
+}
+#keyboard-root{
+    overflow: hidden;
+    padding: 0;
+}
+
+#keyboard-root:after{
+    content: '';
+    clear: both;
+}
+
+.kb-note{
+    padding: 0;
+    float: left;
+    width: 25px;
+    height: 140px;
+    border: 1px gray solid;
+    font-size: 11px;
+    user-select: none;
+}
+
+.kb-note:not(.kb-note-black):first-child{
+    border-left: 1px gray solid;
+}
+.kb-note:not(.kb-note-black){
+    border-left: unset;
+    padding-top: 113px;
+}
+
+.kb-note.kb-note-black{
+    position: relative;
+    background-color: black;
+    height: 85px;
+    margin: 0 -9px;
+    width: 17px;
+    color: white;
+    padding-top: 57px;
+}
+
+.kb-note.active{
+    background-color: forestgreen;
+}
+
+.kb-note > span{
+    display: inline-block;
+    transform: rotate(-90deg);
+    width: 30px;
+    margin-left: -4px;
+}
+
+.kb-note.kb-note-black > span{
+    margin-left: -8px;
+}
+
+#note-freq-table{
+    border-collapse: collapse;
+}
+
+#note-freq-table tr th, #note-freq-table tr td{
+    border: 1px gray dashed;
+    padding: 6px;
+}
+
+#note-freq-table tr th, #note-freq-table tr td:first-child{
+    background-color: wheat;
+}
+
+#note-freq-table tr td.td-frequency.active{
+    background-color: forestgreen;
+}
