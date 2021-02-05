@@ -60,19 +60,15 @@
     margin-left: -8px;
 }
 
-#note-freq-table{
+#modes-table{
     border-collapse: collapse;
 }
 
-#note-freq-table tr th, #note-freq-table tr td{
+#modes-table tr th, #modes-table tr td{
     border: 1px gray dashed;
     padding: 6px;
 }
 
-#note-freq-table tr th, #note-freq-table tr td:first-child{
+#modes-table tr th, #modes-table tr td:first-child{
     background-color: wheat;
-}
-
-#note-freq-table tr td.td-frequency.active{
-    background-color: #63c763;
 }
