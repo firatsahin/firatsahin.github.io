@@ -1,0 +1,72 @@
+<div>
+    <h2>Multiplayer Snake Game (w/Firebase Realtime DB)</h2>
+
+    <div step="1">
+        <input type="text" name="player-name" placeholder="Your name please (or a nickname..)" autocomplete="off" style="width: 100%; padding: 10px;">
+        <br>
+        <button name="btn-join-game-rooms" style="width: 100%; padding: 10px;">Join to Game Rooms</button>
+    </div>
+
+    <div step="2">
+        <div>Hi <b name="player-name"></b>! Welcome to game rooms list.</div>
+        <h3>Game Rooms</h3>
+        <div>You can join a game or create a new game room.</div>
+        <div id="games-list-root" class="no-pad"></div>
+        <div class="add-game-div">
+            Room Capacity:
+            <select name="maxNumOfPlayers">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select> players
+            <br><br>
+            <button name="btn-add-game">+ Add New Game Room</button>
+        </div>
+    </div>
+
+    <div step="3">
+        <button name="btn-stop-game" style="display: none;">Stop Game</button>
+        <button name="btn-leave-game">Leave Game</button>
+        <div id="game-info-root" class="no-pad"></div>
+        <div id="board-overlay">
+            <div></div>
+            <button name="btn-im-ready">I'm Ready!</button>
+            <button name="btn-start-game" style="display: none;">Start the Game!</button>
+            <button name="btn-one-more-round" style="display: none;">One More Round?</button>
+        </div>
+        <div id="game-board"></div>
+        <div id="game-board-after" class="row no-pad">
+            <div class="left no-pad hidden" name="iam-the-leader-div"></div>
+            <div class="left no-pad hidden" name="points-for-leadership-div"></div>
+            <div class="right no-pad">Last Change: <b name="my-last-score-change">N/A</b></div>
+        </div>
+        <div id="scoreboard-div"></div>
+
+        <div id="mobile-controller-root" class="hidden">
+            <div style="width: 300px; margin: 0 auto;">
+                <div class="left"></div>
+                <div class="left">
+                    <div href="#" class="movement-button" direction="up">↑</div>
+                </div>
+                <div class="left"></div>
+                <div class="clear"></div>
+            </div>
+            <div style="width: 300px; margin: 0 auto;">
+                <div class="left">
+                    <div href="#" class="movement-button" direction="left">←</div>
+                </div>
+                <div class="left">
+                    <div href="#" class="movement-button" direction="down">↓</div>
+                </div>
+                <div class="left">
+                    <div href="#" class="movement-button" direction="right">→</div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

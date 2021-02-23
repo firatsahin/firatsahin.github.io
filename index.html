@@ -109,14 +109,14 @@
                 return firebase.apps.length > 0;
             },
             startApp: (fbaseApp) => {
-                if (typeof fbaseApp === 'undefined' || fbaseH.isAppStarted()) return;
+                if (typeof fbaseApp === 'undefined' || fbaseH.isAppStarted()) return fbaseApp;
                 fbaseApp = firebase.initializeApp(firebaseConfig);
                 l("started->", fbaseApp);
                 firebase.analytics();
                 return fbaseApp;
             },
             stopApp: (fbaseApp) => {
-                if (typeof fbaseApp === 'undefined' || !fbaseH.isAppStarted()) return;
+                if (typeof fbaseApp === 'undefined' || !fbaseH.isAppStarted()) return fbaseApp;
                 fbaseApp.delete(); // delete firebase app (destroy socket connection)
                 fbaseApp = null;
                 l("stopped->", fbaseApp);
@@ -167,6 +167,7 @@
             <ul>
                 <li><a href="#/module/find-the-celebrity">Find the Celebrity?</a></li>
                 <li><a href="#/module/offense-defense-game">Offense/Defense Game</a></li>
+                <li><a href="#/module/multiplayer-snake-game">Multiplayer Snake Game</a></li>
             </ul>
         </div>
 
