@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/frt-sample-react-app-01/static/css/main.84c06acc.chunk.css",
+    "main.js": "/frt-sample-react-app-01/static/js/main.e90db0aa.chunk.js",
+    "main.js.map": "/frt-sample-react-app-01/static/js/main.e90db0aa.chunk.js.map",
+    "runtime-main.js": "/frt-sample-react-app-01/static/js/runtime-main.3bf78823.js",
+    "runtime-main.js.map": "/frt-sample-react-app-01/static/js/runtime-main.3bf78823.js.map",
+    "static/js/2.95d10c59.chunk.js": "/frt-sample-react-app-01/static/js/2.95d10c59.chunk.js",
+    "static/js/2.95d10c59.chunk.js.map": "/frt-sample-react-app-01/static/js/2.95d10c59.chunk.js.map",
+    "static/js/3.a627c452.chunk.js": "/frt-sample-react-app-01/static/js/3.a627c452.chunk.js",
+    "static/js/3.a627c452.chunk.js.map": "/frt-sample-react-app-01/static/js/3.a627c452.chunk.js.map",
+    "static/js/4.c451084c.chunk.js": "/frt-sample-react-app-01/static/js/4.c451084c.chunk.js",
+    "static/js/4.c451084c.chunk.js.map": "/frt-sample-react-app-01/static/js/4.c451084c.chunk.js.map",
+    "static/js/5.adb5527b.chunk.js": "/frt-sample-react-app-01/static/js/5.adb5527b.chunk.js",
+    "static/js/5.adb5527b.chunk.js.map": "/frt-sample-react-app-01/static/js/5.adb5527b.chunk.js.map",
+    "static/js/6.5cf6395b.chunk.js": "/frt-sample-react-app-01/static/js/6.5cf6395b.chunk.js",
+    "static/js/6.5cf6395b.chunk.js.map": "/frt-sample-react-app-01/static/js/6.5cf6395b.chunk.js.map",
+    "static/js/7.afd0ba58.chunk.js": "/frt-sample-react-app-01/static/js/7.afd0ba58.chunk.js",
+    "static/js/7.afd0ba58.chunk.js.map": "/frt-sample-react-app-01/static/js/7.afd0ba58.chunk.js.map",
+    "static/js/8.538f2cee.chunk.js": "/frt-sample-react-app-01/static/js/8.538f2cee.chunk.js",
+    "static/js/8.538f2cee.chunk.js.map": "/frt-sample-react-app-01/static/js/8.538f2cee.chunk.js.map",
+    "index.html": "/frt-sample-react-app-01/index.html",
+    "precache-manifest.bfabcf7936820be2b3c97fa521473b88.js": "/frt-sample-react-app-01/precache-manifest.bfabcf7936820be2b3c97fa521473b88.js",
+    "service-worker.js": "/frt-sample-react-app-01/service-worker.js",
+    "static/css/main.84c06acc.chunk.css.map": "/frt-sample-react-app-01/static/css/main.84c06acc.chunk.css.map",
+    "static/js/2.95d10c59.chunk.js.LICENSE.txt": "/frt-sample-react-app-01/static/js/2.95d10c59.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3bf78823.js",
+    "static/js/2.95d10c59.chunk.js",
+    "static/css/main.84c06acc.chunk.css",
+    "static/js/main.e90db0aa.chunk.js"
+  ]
+}
