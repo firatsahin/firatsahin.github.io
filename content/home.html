@@ -9,17 +9,29 @@
     <div id="tumlb-root">
         <h3>Things You May Like Browsing</h3>
         <div id="tumlb-items-wrapper">
-            <a href="#/module/offense-defense-game" class="tumlb-item">
-                <div class="tumlb-item-img" style="background-image: url('/img/module-ss/offense-defense-game.jpg');"></div>
-                <div class="tumlb-item-title">Offense/Defense Game</div>
+            <a href="#/module/multiplayer-snake-game" class="tumlb-item">
+                <div class="tumlb-item-img" style="background-image: url('/img/module-ss/multiplayer-snake-game.jpg');"></div>
+                <div class="tumlb-item-title">Multiplayer Snake Game</div>
             </a>
             <a href="#/module/binary-tree" class="tumlb-item">
                 <div class="tumlb-item-img" style="background-image: url('/img/module-ss/binary-tree.jpg');"></div>
                 <div class="tumlb-item-title">Binary Tree</div>
             </a>
+            <a href="#/module/offense-defense-game" class="tumlb-item">
+                <div class="tumlb-item-img" style="background-image: url('/img/module-ss/offense-defense-game.jpg');"></div>
+                <div class="tumlb-item-title">Offense/Defense Game</div>
+            </a>
+            <a href="#/module/notes-and-frequencies" class="tumlb-item">
+                <div class="tumlb-item-img" style="background-image: url('/img/module-ss/notes-and-frequencies.jpg');"></div>
+                <div class="tumlb-item-title">Notes & Frequencies</div>
+            </a>
             <a href="#/module/multi-touch-events" class="tumlb-item">
                 <div class="tumlb-item-img" style="background-image: url('/img/module-ss/multi-touch-events.jpg');"></div>
                 <div class="tumlb-item-title">Multi-Touch Events</div>
+            </a>
+            <a href="#/module/scales-and-modes" class="tumlb-item">
+                <div class="tumlb-item-img" style="background-image: url('/img/module-ss/scales-and-modes.jpg');"></div>
+                <div class="tumlb-item-title">Scales & Modes (in Music)</div>
             </a>
             <a href="#/module/binary-search" class="tumlb-item">
                 <div class="tumlb-item-img" style="background-image: url('/img/module-ss/binary-search.jpg');"></div>
@@ -54,10 +66,10 @@
         overflow: hidden;
     }
     a.tumlb-item .tumlb-item-img{
-        height: 450px;
+        height: 550px;
         background-size: contain;
         background-repeat: no-repeat;
-        background-position: center;
+        background-position: center top;
         background-color: seashell;
     }
     a.tumlb-item .tumlb-item-title{
@@ -73,7 +85,7 @@
     @media screen and (max-width: 1140px) { /* mobile + tablet mode (3 -> 2 threshold) */
         #tumlb-root{width: 100%;}
         a.tumlb-item{width: calc(50% - 8px);}
-        a.tumlb-item .tumlb-item-img{height: 400px;}
+        /*a.tumlb-item .tumlb-item-img{height: 550px;}*/
     }
 
     @media screen and (max-width: 750px) { /* 2 -> 1 threshold */
