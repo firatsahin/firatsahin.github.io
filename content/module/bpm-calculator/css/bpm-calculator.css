@@ -1,0 +1,47 @@
+#right-content-div > div {
+}
+
+button[name=btn-tap-n-calculate] {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 28px;
+    background-color: greenyellow;
+}
+
+button[name=btn-reset] {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+#results-root {
+    margin-top: 15px;
+}
+
+#results-root h2:nth-child(1) {
+    font-size: 20px;
+    padding: 12px;
+    margin: 0;
+}
+
+#results-root h2:nth-child(2) {
+    font-size: 34px;
+    border: 1px gray dashed;
+    border-radius: 12px;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0;
+}
+
+#results-root span[name="result-ms"] {
+    color: red;
+}
+
+#results-root span[name="result-bpm"] {
+    color: green;
+}
