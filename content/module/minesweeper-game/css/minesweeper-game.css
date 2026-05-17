@@ -1,0 +1,80 @@
+div#game-root {
+  min-width: 320px;
+  margin: 0 auto;
+}
+
+#game-config-root {
+  input[type="number"] {
+    width: 50px;
+  }
+
+  button[name="create_game"] {
+    width: 100%;
+    height: 40px;
+    background-color: greenyellow;
+  }
+}
+
+.board-row {
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0;
+
+  &::after {
+    clear: both;
+    content: " ";
+  }
+
+  & .board-col {
+    float: left;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    border: 1px #9c27b0 dotted;
+    text-align: center;
+    line-height: 14px;
+    border-radius: 8px;
+    cursor: default;
+    padding: 8px 0;
+    position: relative;
+
+    &:not(.is-open) {
+      &::before {
+        content: " ";
+        display: block;
+        width: 24px;
+        height: 24px;
+        background-color: bisque;
+        position: absolute;
+        margin: -5px 3px;
+        /* opacity: 0.8; */
+      }
+    }
+
+    &.is-locked:not(.is-exploded):not(.is-cleared) {
+      &::before {
+        content: "🚩";
+        padding: 5px 4px 0;
+        box-sizing: border-box;
+      }
+    }
+
+    &.is-exploded {
+      background-color: red;
+    }
+
+    &.is-cleared {
+      background-color: greenyellow;
+    }
+  }
+}
+
+div#console-root {
+  height: 125px;
+  margin: 0 auto 0 auto;
+  overflow-y: auto;
+  font-family: Tahoma;
+  font-size: 13px;
+  border: 1px gray dashed;
+  border-radius: 6px;
+}
